@@ -1,0 +1,47 @@
+managed implementation in class zbp_pnc_travel unique;
+strict ( 2 );
+
+define behavior for zpnc_travel //alias <alias_name>
+persistent table /dmo/travel_m
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) TravelId;
+  association _Booking { create; }
+
+  mapping for /dmo/travel_m corresponding{}
+}
+
+define behavior for zpnc_booking //alias <alias_name>
+persistent table /dmo/booking_m
+lock dependent by _Travel
+authorization dependent by _Travel
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) TravelId, BookingId;
+  association _Travel;
+  association _Booksuppl { create; }
+
+  mapping for /dmo/booking_m corresponding{}
+}
+
+define behavior for zpnc_booksuppl //alias <alias_name>
+persistent table /dmo/booksuppl_m
+lock dependent by _Travel
+authorization dependent by _Travel
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) TravelId, BookingId, BookingSupplementId;
+  association _Travel;
+  association _Booking;
+
+  mapping for /dmo/booksuppl_m corresponding{}
+}

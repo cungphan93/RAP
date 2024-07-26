@@ -10,7 +10,7 @@
 define view entity zpnc_booking
   as select from /dmo/booking_m
   association     to parent zpnc_travel       as _Travel        on  $projection.TravelId = _Travel.TravelId
-  composition of zpnc_booksuppl as _Booksuppl
+  composition[0..*] of zpnc_booksuppl as _Booksuppl
   association [1] to /DMO/I_Customer          as _Customer      on  $projection.CustomerId = _Customer.CustomerID
   association [1] to /DMO/I_Carrier           as _Carrier       on  $projection.CarrierId = _Carrier.AirlineID
   association [1] to /DMO/I_Connection        as _Connection    on  $projection.CarrierId    = _Connection.AirlineID

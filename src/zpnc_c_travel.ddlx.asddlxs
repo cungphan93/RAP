@@ -1,0 +1,165 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:{
+typeName: 'Travel',
+typeNamePlural: 'Travels',
+title: {    value: 'TravelId' },
+description: { value: '_Customer.FirstName' }
+}
+annotate view zpnc_c_travel with
+{
+  @UI.facet: [
+  {
+  purpose: #HEADER,
+   type: #DATAPOINT_REFERENCE,
+   position: 10,
+   label: 'Price',
+   targetQualifier: 'data_price'
+   },
+   {
+     purpose: #HEADER,
+   type: #DATAPOINT_REFERENCE,
+   position: 20,
+   label: 'Status',
+   targetQualifier: 'status'
+   },
+   {
+   purpose: #STANDARD,
+   type: #COLLECTION,
+   id: 'super',
+   label: 'Detail',
+   position: 10
+   },
+   {
+   purpose: #STANDARD,
+   type: #IDENTIFICATION_REFERENCE,
+   position: 10,
+   label: 'More Infor',
+   parentId: 'super'
+   },
+   {
+   purpose: #STANDARD,
+   type: #FIELDGROUP_REFERENCE,
+   position: 20,
+   targetQualifier: 'price',
+   label: 'Price',
+   parentId: 'super'
+   },
+   {
+   purpose: #STANDARD,
+   type: #FIELDGROUP_REFERENCE,
+   position: 30,
+   parentId: 'super',
+   label: 'Date',
+   targetQualifier: 'date'
+   },
+  //   {
+  //   purpose: #STANDARD,
+  //   type: #FIELDGROUP_REFERENCE,
+  //   position: 40,
+  //   parentId: 'super',
+  //   label: 'Admin Infor',
+  //   targetQualifier: 'admin'
+  //   }
+  {
+  purpose: #STANDARD,
+  type: #LINEITEM_REFERENCE,
+  position: 20,
+  label: 'Booking',
+  targetElement: '_Booking'
+  }
+  ]
+  @UI: {
+  selectionField: [{ position: 10 }],
+  lineItem: [{ position: 10 }],
+  identification: [{ position: 10 }]
+  }
+  TravelId;
+  @UI: {
+  selectionField: [{ position: 20 }],
+  lineItem: [{ position: 20 }],
+   identification: [{ position: 20 }]
+  }
+  AgencyId;
+  @UI: {
+  selectionField: [{ position: 30 }],
+  lineItem: [{ position: 30 }],
+   identification: [{ position: 30 }]
+  }
+  CustomerId;
+  @UI: {
+  selectionField: [{ position: 40 }],
+  lineItem: [{ position: 40 }],
+   identification: [{ position: 40 }],
+     fieldGroup: [{ position: 10, label: 'Begin Date', qualifier: 'date' }]
+  }
+  BeginDate;
+  @UI: {
+  selectionField: [{ position: 50 }],
+  lineItem: [{ position: 50 }],
+       fieldGroup: [{ position: 20, label: 'End Date', qualifier: 'date' }]
+  }
+  EndDate;
+  @UI: {
+  selectionField: [{ position: 60 }],
+  lineItem: [{ position: 60 }],
+  fieldGroup: [{ position: 10,
+  label: 'Booking Fee',
+  qualifier: 'price'
+   }]
+  }
+  BookingFee;
+  @UI: {
+  lineItem: [{ position: 70 }],
+  dataPoint: { qualifier: 'data_price',
+  title: 'Price'
+   },
+   fieldGroup: [{ position: 20,
+  label: 'Total Price',
+  qualifier: 'price'
+   }]
+  }
+  TotalPrice;
+  @UI: {
+  lineItem: [{ position: 80 }],
+   fieldGroup: [{ position: 30,
+  label: 'Currency Code',
+  qualifier: 'price'
+   }]
+  }
+  CurrencyCode;
+  @UI: {
+  selectionField: [{ position: 90 }],
+  lineItem: [{ position: 90 }]
+  }
+  Description;
+  @UI: {
+  lineItem: [{ position: 70 , criticality: 'Criticality',
+                     importance: #HIGH }],
+                     dataPoint:{  criticality: 'Criticality', title: 'Status', qualifier: 'status' },
+  fieldGroup: [{ position: 30, label: 'Status', qualifier: 'date' }]
+  }
+  OverallStatus;
+  @UI:{
+  fieldGroup: [{ position: 10, label: 'Created By', qualifier: 'admin' }]
+  }
+  CreatedBy;
+  @UI:{
+  fieldGroup: [{ position: 20, label: 'Created At', qualifier: 'admin' }]
+  }
+  CreatedAt;
+  @UI:{
+  fieldGroup: [{ position: 30, label: 'Last Changed By', qualifier: 'admin' }]
+  }
+  LastChangedBy;
+  @UI:{
+  fieldGroup: [{ position: 40, label: 'Last Changed At', qualifier: 'admin' }]
+  }
+  LastChangedAt;
+  /* Associations */
+  //    _Agency;
+  //    _Booking;
+  //    _Currency;
+  //    _Customer;
+  //    _OverallStatus;
+
+}
