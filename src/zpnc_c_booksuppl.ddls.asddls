@@ -7,8 +7,16 @@ define view entity zpnc_c_booksuppl
   key TravelId,
   key BookingId,
   key BookingSupplementId,
+      @Consumption.valueHelpDefinition: [{ entity: {
+          name: '/DMO/I_Supplement',
+          element: 'SupplementID'
+      } }]  
       SupplementId,
       Price,
+      @Consumption.valueHelpDefinition: [{ entity: {
+          name: 'I_Currency',
+          element: 'Currency'
+      } }]
       CurrencyCode,
       LastChangedAt,
       /* Associations */

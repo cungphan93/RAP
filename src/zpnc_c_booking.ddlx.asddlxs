@@ -46,7 +46,8 @@ annotate entity zpnc_c_booking with
   }
   CarrierId;
   @UI:{
-  lineItem: [{ position: 60 }]
+  lineItem: [{ position: 60 }],
+  identification: [{ position: 60 }]
   }
   ConnectionId;
   //    FlightDate;

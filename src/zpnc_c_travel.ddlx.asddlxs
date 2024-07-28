@@ -70,7 +70,11 @@ annotate view zpnc_c_travel with
   ]
   @UI: {
   selectionField: [{ position: 10 }],
-  lineItem: [{ position: 10 }],
+  lineItem: [{ position: 10,
+  type: #FOR_ACTION,
+  dataAction: 'copy_travel',
+  label: 'Copy Travel',
+  invocationGrouping: #CHANGE_SET }],
   identification: [{ position: 10 }]
   }
   TravelId;

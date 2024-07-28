@@ -1,11 +1,13 @@
-managed implementation in class zbp_pnc_travel unique;
+managed;
 strict ( 2 );
 
-define behavior for zpnc_travel //alias <alias_name>
+define behavior for zpnc_travel alias Travel
+implementation in class zbp_pnc_travel unique
 persistent table /dmo/travel_m
 lock master
 authorization master ( instance )
-//etag master <field_name>
+etag master LastChangedAt
+early numbering
 {
   create;
   update;
@@ -13,14 +15,34 @@ authorization master ( instance )
   field ( readonly ) TravelId;
   association _Booking { create; }
 
-  mapping for /dmo/travel_m corresponding{}
+  factory action copy_travel[1];
+
+  mapping for /dmo/travel_m corresponding
+    {
+      TravelId      = travel_id;
+      AgencyId      = agency_id;
+      CustomerId    = customer_id;
+      BeginDate     = begin_date;
+      EndDate       = end_date;
+      BookingFee    = booking_fee;
+      TotalPrice    = total_price;
+      CurrencyCode  = currency_code;
+      Description   = description;
+      OverallStatus = overall_status;
+      CreatedBy     = created_by;
+      CreatedAt     = created_at;
+      LastChangedBy = last_changed_by;
+      LastChangedAt = last_changed_at;
+    }
 }
 
-define behavior for zpnc_booking //alias <alias_name>
+define behavior for zpnc_booking alias Booking
+implementation in class zbp_pnc_booking unique
 persistent table /dmo/booking_m
 lock dependent by _Travel
 authorization dependent by _Travel
-//etag master <field_name>
+etag master LastChangedAt
+early numbering
 {
   update;
   delete;
@@ -28,14 +50,29 @@ authorization dependent by _Travel
   association _Travel;
   association _Booksuppl { create; }
 
-  mapping for /dmo/booking_m corresponding{}
+  mapping for /dmo/booking_m corresponding
+    {
+      TravelId      = travel_id;
+      BookingId     = booking_id;
+      BookingDate   = booking_date;
+      CustomerId    = customer_id;
+      CarrierId     = carrier_id;
+      ConnectionId  = connection_id;
+      FlightDate    = flight_date;
+      FlightPrice   = flight_price;
+      CurrencyCode  = currency_code;
+      BookingStatus = booking_status;
+      LastChangedAt = last_changed_at;
+    }
 }
 
-define behavior for zpnc_booksuppl //alias <alias_name>
+define behavior for zpnc_booksuppl alias Booksuppl
+implementation in class zbp_pnc_booksuppl unique
 persistent table /dmo/booksuppl_m
 lock dependent by _Travel
 authorization dependent by _Travel
-//etag master <field_name>
+etag master LastChangedAt
+early numbering
 {
   update;
   delete;
@@ -43,5 +80,14 @@ authorization dependent by _Travel
   association _Travel;
   association _Booking;
 
-  mapping for /dmo/booksuppl_m corresponding{}
+  mapping for /dmo/booksuppl_m corresponding
+    {
+      TravelId            = travel_id;
+      BookingId           = booking_id;
+      BookingSupplementId = booking_supplement_id;
+      SupplementId        = supplement_id;
+      Price               = price;
+      CurrencyCode        = currency_code;
+      LastChangedAt       = last_changed_at;
+    }
 }

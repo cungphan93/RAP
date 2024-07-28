@@ -7,6 +7,8 @@ define behavior for zpnc_c_travel //alias <alias_name>
   use update;
   use delete;
 
+  use action copy_travel;
+
   use association _Booking { create; }
 }
 

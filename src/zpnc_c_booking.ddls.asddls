@@ -7,8 +7,22 @@ define view entity zpnc_c_booking
   key TravelId,
   key BookingId,
       BookingDate,
+      @Consumption.valueHelpDefinition: [{ entity: {
+          name: '/DMO/I_Customer',
+          element: 'CustomerID'
+      } }]
       CustomerId,
+      @Consumption.valueHelpDefinition: [{ entity: {
+          name: '/DMO/I_Carrier',
+          element: 'AirlineID'
+      } }]
       CarrierId,
+      @Consumption.valueHelpDefinition: [{ entity: {
+          name: '/DMO/I_Connection',
+          element: 'ConnectionID'
+      },
+           additionalBinding: [{ element: 'AirlineID',
+                                 localElement: 'CarrierId' }] }]
       ConnectionId,
       FlightDate,
       FlightPrice,

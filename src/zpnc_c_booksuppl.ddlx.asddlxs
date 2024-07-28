@@ -1,24 +1,40 @@
 @Metadata.layer: #CORE
 annotate entity zpnc_c_booksuppl with
 {
+  @UI.facet: [
+  {
+  type: #IDENTIFICATION_REFERENCE,
+  id: 'Booksuppl',
+  purpose: #STANDARD,
+  position: 20,
+  label: 'Booking Suppl'
+   }
+  ]
+
+
   @UI:{
-  lineItem: [{ position: 10 }]
+  lineItem: [{ position: 10 }],
+  identification: [{ position: 10 }]
   }
   TravelId;
   @UI:{
-  lineItem: [{ position: 20 }]
+  lineItem: [{ position: 20 }],
+  identification: [{ position: 20 }]
   }
   BookingId;
   @UI:{
-  lineItem: [{ position: 30 }]
+  lineItem: [{ position: 30 }],
+  identification: [{ position: 30 }]
   }
   BookingSupplementId;
   @UI:{
-  lineItem: [{ position: 40 }]
+  lineItem: [{ position: 40 }],
+  identification: [{ position: 40 }]
   }
   SupplementId;
   @UI:{
-  lineItem: [{ position: 50 }]
+  lineItem: [{ position: 50 }],
+  identification: [{ position: 50 }]
   }
   Price;
   @UI:{
